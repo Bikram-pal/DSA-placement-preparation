@@ -24,11 +24,28 @@ vector<int> findLeaders(vector<int> &arr , int n)
   return Leader;
 }
 
+// optimal
+vector<int> findLeaders_optimal(vector<int> &arr, int n)
+{
+  vector<int> ans ;
+  int maxi = INT_MIN;
+  for(int i=n-1; i>=0; i--)
+  {
+    if(arr[i]>maxi)
+    {
+      ans.push_back(arr[i]);
+      maxi = arr[i];
+    }
+  }
+  return ans;
+}
+
 int main()
 {
   vector<int> arr = {10, 22, 12, 3, 0, 6};
   int n = arr.size();
-  vector<int> ans = findLeaders(arr, n);
+  // vector<int> ans = findLeaders(arr, n);
+  vector<int> ans = findLeaders_optimal(arr, n);
 
   for(int i=0; i<ans.size(); i++)
   {
