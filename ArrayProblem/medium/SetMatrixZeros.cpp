@@ -87,13 +87,61 @@ void SetMatrixZeros2_betterapp(vector<vector< int>> &matrix, int n, int m)
 }
 
 
+// optimal solution -> retuce space complexity
+// use matcix for row and col store instands of using extra arrs
+// tc -> o(2n*m) + o(n) +o(m)
+// sc -> o(1) 
+void SetMatrixZeros2_optimalSol(vector<vector<int>> &matrix, int n, int m)
+{
+  int col0 = 1;
+  for(int i=0; i<n; i++)
+  {
+    for(int j=0; j<m; j++)
+    {
+      if(matrix[i][j]==0)
+      {
+        matrix[i][0] = 0;
+        if(j!=0)
+          matrix[0][j] = 0;
+        else
+          col0 = 0;
+      }
+    }
+  }
+  for(int i=1; i<n; i++)
+  {
+    for(int j=1; j<m; j++)
+    {
+      if(matrix[0][j]==0 || matrix[i][0] == 0)
+      {
+        matrix[i][j] = 0;
+      }
+    }
+  }
+  if(matrix[0][0]==0)
+  {
+    for(int j=0; j<m; j++)
+    {
+      matrix[0][j] = 0;
+    }
+  }
+  if(col0 == 0)
+  {
+    for(int i=0; i<n; i++)
+    {
+      matrix[i][0] = 0;
+    }
+  }
+}
+
 int main()
 {
   vector<vector<int>> matrix = {{1,1,1},{1,0,1},{1,1,1}};
   int rowSize = matrix.size();
   int colSize = matrix[0].size();
   // SetMatrixZeros(matrix, rowSize, colSize); // brute force
-  SetMatrixZeros2_betterapp(matrix, rowSize, colSize);
+  // SetMatrixZeros2_betterapp(matrix, rowSize, colSize); // better approch
+  SetMatrixZeros2_optimalSol(matrix, rowSize, colSize);
   for(int i=0; i<rowSize; i++)
   {
     for(int j=0; j<colSize; j++)
