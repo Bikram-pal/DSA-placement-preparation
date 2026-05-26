@@ -2,6 +2,7 @@
 using namespace std;
 
 // brute force approch 
+// TC -> (n*m)(n+m) + n*m
 
 void rowZero(vector<vector<int>> &matrix, int i, int m)
 {
@@ -51,12 +52,48 @@ void SetMatrixZeros(vector< vector<int>> &matrix, int n, int m)
   changeNegOneToZero(matrix, n, m);
 }
 
+
+// Better Approch
+// tranck only the zero instand of the tracking effecting ones
+//  tc = o(2*n*m);
+// sc = o(n) + o(m)
+
+void SetMatrixZeros2_betterapp(vector<vector< int>> &matrix, int n, int m)
+{
+  vector<int> row(n, 0);
+  vector<int> col(m, 0);
+  for(int i=0; i<n; i++)
+  {
+    for(int j=0; j<m; j++)
+    {
+      if(matrix[i][j]==0)
+      {
+        row[i]= 1;
+        col[j] = 1;
+      }
+    }
+  }
+
+  for(int i =0; i<n; i++)
+  {
+    for(int j=0; j<m; j++)
+    {
+      if(row[i] == 1 || col[j] == 1)
+      matrix[i][j] = 0;
+    }
+
+  }
+
+}
+
+
 int main()
 {
   vector<vector<int>> matrix = {{1,1,1},{1,0,1},{1,1,1}};
   int rowSize = matrix.size();
   int colSize = matrix[0].size();
-  SetMatrixZeros(matrix, rowSize, colSize);
+  // SetMatrixZeros(matrix, rowSize, colSize); // brute force
+  SetMatrixZeros2_betterapp(matrix, rowSize, colSize);
   for(int i=0; i<rowSize; i++)
   {
     for(int j=0; j<colSize; j++)
