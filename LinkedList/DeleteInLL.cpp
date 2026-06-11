@@ -66,7 +66,34 @@ void tarversal(node * head)
     cout<<temp->data<<" ";
     temp = temp->next;
   }
+  cout<<endl;
   return;
+}
+void insertion(node *& head, int value, int position)
+{
+  node* temp = new node(value);
+  if(position == 1)
+  {
+    temp->next = head;
+    head = temp;
+    return;
+  }
+  node * curr = head;
+  node* prev = nullptr;
+  int count = 1;
+  while(curr!=nullptr)
+  {
+    if(count == position)
+    {
+      prev->next = temp;
+      temp->next= curr;
+     
+      return;
+    }
+    prev= curr;
+    curr = curr->next;
+    count++;
+  }
 }
 int main()
 {
@@ -75,6 +102,8 @@ int main()
   int target = 34;
 
   deleteNode(head, target);
+  tarversal(head);
+  insertion(head, 1, 2);
   tarversal(head);
   return 0;
 }
