@@ -4,10 +4,10 @@
     {
       "label": "compile and run",
       "type": "shell",
-      "command": "cmd.exe",
+      "command": "powershell.exe",
       "args": [
-        "/c",
-        "g++ -std=c++17 -o \"${fileDirname}\\${fileBasenameNoExtension}.exe\" \"${file}\" && \"${fileDirname}\\${fileBasenameNoExtension}.exe\" < \"${workspaceFolder}\\input.txt\" > \"${workspaceFolder}\\output.txt\""
+        "-Command",
+        "New-Item -ItemType Directory -Force -Path \"${workspaceFolder}\\garbage\" | Out-Null; g++ -std=c++17 -o \"${workspaceFolder}\\garbage\\${fileBasenameNoExtension}.exe\" \"${file}\"; if ($?) { Get-Content \"${workspaceFolder}\\input.txt\" | & \"${workspaceFolder}\\garbage\\${fileBasenameNoExtension}.exe\" | Out-File -Encoding utf8 \"${workspaceFolder}\\output.txt\" }"
       ],
       "options": {
         "cwd": "${fileDirname}"
