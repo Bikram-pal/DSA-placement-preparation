@@ -16,6 +16,8 @@ Hi, I'm **Bikram Pal** — a CSE student at UEM Kolkata. This repo holds my solv
 | `BinarySearch/` | Binary search on 1D arrays and "on answer" problems |
 | `LinkedList/` | Linked list construction, insertion, deletion, traversal |
 | `Recursion/` | Recursion, subsequences, permutations, merge sort |
+| `stack_queue/` | Stack and queue classes, valid parentheses, monotonic stack problems (subarray minimums, range sums, remove K digits, asteroid collision, trapping rainwater, largest rectangle in histogram) |
+| `BinaryTree/` | Tree traversals, including Morris inorder traversal (O(1) extra space) |
 | `OPPs/` | Core OOP: constructors, inheritance, polymorphism, exceptions |
 | `playground/` | Scratch files for language features & practice |
 
